@@ -1,14 +1,11 @@
 cmake_minimum_required(VERSION 2.8.9)
 cmake_policy(VERSION 2.8.9)
-
 find_program(CCACHE_PROGRAM ccache)
 if(CCACHE_PROGRAM)
     set_property(GLOBAL PROPERTY RULE_LAUNCH_COMPILE "${CCACHE_PROGRAM}")
 endif()
-
 set(LIBRARY_SOVERSION_INFO 2)
 set(LIBRARY_VERSION_INFO 2.2.0)
-
 set(LOCAL_PROJECT_NAME ANTS)
 INCLUDE(InstallRequiredSystemLibraries)
 ## NOTE THERE SHOULD BE NO PROJECT STATEMENT HERE!
@@ -38,6 +35,11 @@ mark_as_advanced(${LOCAL_PROJECT_NAME}_INSTALL_DEVELOPMENT)
 
 option(COPY_SCRIPT_FILES_TO_BIN_DIR "Copy the script files to the ANTS bin directory." OFF)
 mark_as_advanced(COPY_SCRIPT_FILES_TO_BIN_DIR)
+
+option(USE_PROCESS_PARALLELIZE_ITK "Build ANTs using process parallelized ITK"         OFF )
+if (USE_PROCESS_PARALLELIZE_ITK )
+  add_definitions(-DITK_USE_PARALLEL_PROCESSES=1)
+endif()
 
 set(CPACK_PACKAGE_NAME "ANTs")
 set(CPACK_PACKAGE_VENDOR "CMake.org")

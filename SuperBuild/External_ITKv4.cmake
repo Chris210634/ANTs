@@ -145,10 +145,15 @@ if(NOT DEFINED ${extProjName}_DIR AND NOT ${USE_SYSTEM_${extProjName}})
       list(APPEND ${proj}_CMAKE_OPTIONS -DModule_ITKVtkGlue:BOOL=OFF)
     endif()
 
+  # Set compiler flag if user chooses to build process parallelized version
+  if (USE_PROCESS_PARALLELIZE_ITK )
+    add_definitions(-DITK_USE_PARALLEL_PROCESSES=1)
+    list(APPEND ${proj}_CMAKE_OPTIONS -DITK_USE_PARALLEL_PROCESSES:BOOL=ON)
+  endif()
 
   ### --- End Project specific additions
-  set(${proj}_REPOSITORY ${git_protocol}://github.com/InsightSoftwareConsortium/ITK.git)
-  set(${proj}_GIT_TAG c5138560409c75408ff76bccff938f21e5dcafc6) ##
+  set(${proj}_REPOSITORY ${git_protocol}://github.com/Chris210634/ITK.git)
+  set(${proj}_GIT_TAG 7c8aabfd07c3bbefac2b384867e9e9b89957e003) ##
   set(ITK_VERSION_ID ITK-4.12) ### NOTE: When updating GIT_TAG, also update ITK_VERSION_ID
 
   ExternalProject_Add(${proj}
