@@ -153,7 +153,7 @@ if(NOT DEFINED ${extProjName}_DIR AND NOT ${USE_SYSTEM_${extProjName}})
 
   ### --- End Project specific additions
   set(${proj}_REPOSITORY ${git_protocol}://github.com/Chris210634/ITK.git)
-  set(${proj}_GIT_TAG 01db960e9416f770425fa787c0b998b74b78065b) ##
+  set(${proj}_GIT_TAG 095070f1197f4a0bc6281fbb80307bb88673a700) ##
   set(ITK_VERSION_ID ITK-4.12) ### NOTE: When updating GIT_TAG, also update ITK_VERSION_ID
 
   ExternalProject_Add(${proj}
